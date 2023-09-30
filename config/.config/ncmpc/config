@@ -1,0 +1,18 @@
+host = localhost
+port = 6600
+
+# colors
+enable-colors = yes
+
+color title = white/none
+color line = /none
+
+color background = none
+color list = yellow
+
+color progressbar = green
+color progressbar-background = none
+
+color status-state = white/none
+color status-song = white/none
+color status-time = white/none

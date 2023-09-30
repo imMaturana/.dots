@@ -1,0 +1,10 @@
+[Unit]
+Description=Day/night gamma adjustments for Wayland compositors.
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=wlsunset -l '-19' -L '-43' -t '4000' -T '6500' -g '1.0'
+
+[Install]
+WantedBy=graphical-session.target

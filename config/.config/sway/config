@@ -1,0 +1,224 @@
+# sway config
+
+# mod key
+set $mod Mod4
+
+# direction keys
+set $left h
+set $down j
+set $up k
+set $right l
+
+# applications
+set $term foot
+set $menu fuzzel
+set $browser flatpak run io.gitlab.librewolf-community
+
+# wallpaper
+output * bg ~/.wallpaper fill
+
+# use kanshi to set display profiles
+exec_always kanshi
+
+# fix gtk apps starting slowly
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
+exec systemctl --user import-environment
+
+# disable title bar
+default_border pixel 3
+default_floating_border pixel 3
+
+# gaps
+gaps inner 4
+gaps outer 4
+
+# - input
+input "type:keyboard" {
+	xkb_layout us
+	xkb_variant colemak
+	xkb_options caps:swapescape
+}
+
+input "type:touchpad" {
+	tap enable
+	natural_scroll enable
+}
+
+# -- key bindings
+
+# - basics
+
+# terminal
+bindsym $mod+Return exec $term
+
+# browser
+bindsym $mod+w exec $browser
+
+# kill focused window
+bindsym $mod+Shift+c kill
+
+# launcher
+bindsym $mod+p exec $menu
+
+# drag and resize floating windows
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+q reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+q exec swaymsg exit
+
+# - moving around
+
+# move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# - workspaces
+
+# move focus to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# - layout
+
+# split horizontally/vertically
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# toggle split
+bindsym $mod+t layout toggle split
+
+# fullscreen
+bindsym $mod+f fullscreen
+
+# toggle tiling to floating mode
+bindsym $mod+Shift+space floating toggle
+
+# swap focus between tiling and floating mode
+bindsym $mod+space focus mode_toggle
+
+# move focus to the parent container
+bindsym $mod+a focus parent
+
+# - xf86 keys
+
+# volume
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
+
+# print
+bindsym Print exec grimshot --notify save area ~/Pictures/screenshot_$(date +%d-%m-%Y_%H-%M-%S).jpg
+bindsym Shift+Print exec grimshot --notify save screen ~/Pictures/screenshot_$(date +%d-%m-%Y_%H-%M-%S).jpg
+bindsym Shift+Control+Print exec grimshot --notify save window ~/Pictures/screenshot_$(date +%d-%m-%Y_%H-%M-%S).jpg
+
+# media
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym Shift+XF86AudioNext exec mpc seek +10
+bindsym Shift+XF86AudioPrev exec mpc seek -10
+
+# brightness
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
+# - scratchpad
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show the next scratchpad window or hide the focused scratchpad window.
+bindsym $mod+minus scratchpad show
+
+# - resizing
+mode "resize" {
+	# left will shrink the containers width
+	# right will grow the containers width
+	# up will shrink the containers height
+	# down will grow the containers height
+	bindsym $left resize shrink width 10px
+	bindsym $down resize grow height 10px
+	bindsym $up resize shrink height 10px
+	bindsym $right resize grow width 10px
+
+	# Ditto, with arrow keys
+	bindsym Left resize shrink width 10px
+	bindsym Down resize grow height 10px
+	bindsym Up resize shrink height 10px
+	bindsym Right resize grow width 10px
+
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# - colors
+include ./themes/catppuccin-mocha
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
+
+# status bar
+bar {
+	swaybar_command waybar
+}
+
+# theme and cursor
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+	gsettings set $gnome-schema monospace-font-name 'CaskaydiaCove Nerd Font Mono 11'
+	gsettings set $gnome-schema gtk-theme 'Catppuccin-Mocha-Standard-Blue-dark'
+	gsettings set $gnome-schema cursor-theme 'Adwaita'
+	gsettings set $gnome-schema cursor-size 24
+}
