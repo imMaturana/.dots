@@ -10,6 +10,9 @@ You can find here some docs that might be useful, even if you don't use this rep
 
 - [Using `distrobox` to create development containers](./docs/distrobox-for-development.md)
 
+# References
+
+This repository has some inspiration from [Blau Araujo's `bspwm-install` repository](https://codeberg.org/blau_araujo/bspwm-install).
 
 # LICENSE
 
