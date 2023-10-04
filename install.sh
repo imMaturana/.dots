@@ -107,9 +107,12 @@ systemd_user_services() {
 
 	[ ! -d $out ] && mkdir -p $out
 
-	for service in ./systemd/*.service; do
+	for service in ./systemd/*.{service,target}; do
 		cp $service $out/${service##.*/}
-		systemctl --user enable --now ${service##.*/}
+
+        if [ "${service##*.}" = "service" ]; then
+            systemctl --user enable --now ${service##.*/}
+        fi
 	done
 }
 systemd_user_services

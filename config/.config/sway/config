@@ -22,7 +22,7 @@ exec_always kanshi
 
 # fix gtk apps starting slowly
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
-exec systemctl --user import-environment
+exec systemctl --user start sway-session.target
 
 # disable title bar
 default_border pixel 3
@@ -43,6 +43,11 @@ input "type:touchpad" {
 	tap enable
 	natural_scroll enable
 }
+
+# window rules
+for_window [app_id="org.keepassxc.KeePassXC"] floating enable
+for_window [app_id="mpv"] floating enable
+for_window [app_id="LibreWolf" title="^Picture-in-Picture$"] floating enable, sticky enable
 
 # -- key bindings
 
