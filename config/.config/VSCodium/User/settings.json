@@ -13,6 +13,17 @@
   // respect keyboard options
   "keyboard.dispatch": "keyCode",
 
+  // vim
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.leader": "<Space>",
+  "vim.handleKeys": {
+    "<C-b>": false
+  },
+
   // languages
   "[json]": {
     "editor.tabSize": 2,
