@@ -1,6 +1,6 @@
-# Using `distrobox` to create development containers
+# Using [Distrobox](https://distrobox.it) to create development containers
 
-[Distrobox](https://distrobox.it) is a command line tool that gives you the ability to run most of the Linux distribuitions in a container.
+Distrobox is a command line tool that gives you the ability to run most of the Linux distributions in a container.
 
 ## Creating a custom [Arch Linux](https://archlinux.org) toolbox container
 
@@ -34,7 +34,7 @@ Arch Linux don't let the root user build packages from AUR, so we need to create
 useradd tmpuser -G wheel
 ```
 
-We can `exit` from this session and start a new with using temporary user:
+We can `exit` from this session and start a new using the temporary user:
 
 ```
 buildah run --user tmpuser $container bash
@@ -65,7 +65,7 @@ buildah run $container userdel tmpuser
 
 ## Commiting the container and using the custom image
 
-That's was easy, huh? You can now commit the container and use your custom image to create your development containers.
+That was easy, huh? You can now commit the container and use your custom image to create your development containers.
 
 ```
 buildah commit $container $USER/archlinux-toolbox

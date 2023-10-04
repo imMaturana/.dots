@@ -8,7 +8,7 @@ Welcome to my personal [Debian](https://debian.org/) Bookworm dotfiles.
 
 You can find here some docs that might be useful, even if you don't use this repo.
 
-- [Using `distrobox` to create development containers](./docs/distrobox-for-development.md)
+- [Using Distrobox to create development containers](./docs/distrobox-for-development.md)
 
 # References
 
