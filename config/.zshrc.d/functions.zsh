@@ -20,3 +20,7 @@ open() {
         esac
     done
 }
+
+,() {
+	distrobox enter -- "$@"
+}

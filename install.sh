@@ -29,7 +29,7 @@ dotfiles=(
 	.config/tmux/tmux.conf
 
 	# distrobox
-	.dbox
+    .config/distrobox
 
 	# mpd
 	.config/mpd

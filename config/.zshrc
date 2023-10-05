@@ -23,3 +23,7 @@ if command -v starship >/dev/null; then
 	eval "$(starship init zsh)"
 fi
 
+# source distrobox zshrc file inside container
+if [ -f /run/.containerenv ]; then
+    . "${DISTROBOX_DIR}/zshrc"
+fi
