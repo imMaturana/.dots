@@ -8,3 +8,8 @@ HISTFILE="$HOME/.cache/zhistory_${HOST%.*}"
 
 # default editor
 EDITOR=nvim
+
+# devbox
+if [ $(which devbox) ]; then
+    eval "$(devbox global shellenv)"
+fi
