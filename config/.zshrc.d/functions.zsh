@@ -1,4 +1,4 @@
-ex() {
+function ex() {
     for file in "$@"; do
         case "$file" in
             *.tar.gz|*.tar.xz|*.tgz|*.txz|*.tar)
@@ -9,7 +9,7 @@ ex() {
     done
 }
 
-open() {
+function open() {
     for file in "$@"; do
         case "$file" in
             *.opus|*.ogg|*.md4) mpv "$file" ;;
@@ -21,6 +21,12 @@ open() {
     done
 }
 
-,() {
+function ,() {
+    if [ -f /run/.containerenv ]; then
+        flatpak-spawn --host -- "$@"
+        return
+    fi
+
 	distrobox enter -- "$@"
 }
+
