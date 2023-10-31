@@ -8,11 +8,8 @@ PS1='%n@%m %~ $ '
 # set completion
 autoload -Uz compinit && compinit
 
-# path
-export PATH=$PATH:~/.local/bin
-
 # source rc files
-if [ -d .zshrc.d ]; then
+if [ -d ~/.zshrc.d ]; then
 	for rc in ~/.zshrc.d/*; do
 		. "$rc"
 	done

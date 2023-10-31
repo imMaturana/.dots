@@ -1,3 +1,6 @@
+# path
+export PATH=$PATH:~/.local/bin
+
 # history
 export HISTFILE=~/.zhistory
 export HISTSIZE=1000
