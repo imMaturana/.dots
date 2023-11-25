@@ -1,0 +1,181 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Gabriel Maturana
+
+#+TODO: add some comments
+
+* Tab Width
+#+BEGIN_SRC emacs-lisp
+  (setq-default tab-width 4)
+#+END_SRC
+
+* Custom File
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+#+END_SRC
+
+* Packages
+** Setup MELPA Repository
+[[https://melpa.org/][MELPA]] is a package repository.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+			   '("melpa" . "https://melpa.org/packages/") t)
+
+  ;; initialize packages
+  (package-initialize)
+#+END_SRC
+
+** =use-package=
+#+BEGIN_SRC emacs-lisp
+  ;; verify if use-package is installed, if not, installs it.
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+#+END_SRC
+
+* UI
+** Dashboard
+#+BEGIN_SRC emacs-lisp
+  (use-package dashboard
+    :ensure t
+    :config
+    (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+    (dashboard-setup-startup-hook))
+#+END_SRC
+
+** Doom Modeline
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1))
+#+END_SRC
+
+** All The Icons
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons
+    :ensure t
+    :if (display-graphic-p)
+    :config
+    (unless (find-font (font-spec :name "all-the-icons"))
+      (all-the-icons-install-fonts)))
+#+END_SRC
+
+** Catppuccin
+Catppuccin is a really beautiful theme.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package catppuccin-theme
+    :ensure t
+    :config
+    (load-theme 'catppuccin :no-confirm))
+#+END_SRC
+
+** Vertico
+#+BEGIN_SRC emacs-lisp
+  (use-package vertico
+    :ensure t
+    :init (vertico-mode))
+#+END_SRC
+
+* Org Mode
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :ensure t
+    :config
+    (setq org-startup-indented t
+          org-directory "~/Documents/Org"))
+#+END_SRC
+
+* Programming
+** Web Mode
+#+BEGIN_SRC emacs-lisp
+  (use-package web-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (setq web/indent-offset 2
+          web-mode-markup-indent-offset web/indent-offset
+          web-mode-css-indent-offset web/indent-offset
+          web-mode-code-indent-offset web/indent-offset))
+#+END_SRC
+
+** Python
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-pyright
+    :ensure t
+    :custom
+    (lsp-pyright-auto-import-completions t)
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-pyright)
+                           (eglot))))
+#+END_SRC
+
+** Go
+#+BEGIN_SRC emacs-lisp
+  (use-package go-mode
+    :ensure t
+    :config
+    (add-hook 'go-mode-hook 'eglot-ensure))
+#+END_SRC
+
+** Zig
+#+BEGIN_SRC emacs-lisp
+  (use-package zig-mode
+    :ensure t
+    :config
+    (add-hook 'zig-mode-hook 'eglot-ensure))
+#+END_SRC
+
+** LSP
+*** Orderless
+#+BEGIN_SRC emacs-lisp
+  (use-package orderless
+    :ensure t
+    :demand t
+    :config
+    (setq completion-styles '(orderless flex)
+          completion-category-overrides '(eglot (styles . (orderless-flex)))))
+#+END_SRC
+
+*** Corfu
+#+BEGIN_SRC emacs-lisp
+  (use-package corfu
+    :ensure t
+    :custom
+    (corfu-auto t) ; enable auto completion
+    :config
+    (global-corfu-mode))
+#+END_SRC
+
+*** Eglot
+#+BEGIN_SRC emacs-lisp
+  (use-package eglot
+    :ensure t
+    :after (orderless-mode)
+    :config
+    ;; disable flymake
+    (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1))))
+#+END_SRC
+
+* Tools
+** Magit
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t)
+#+END_SRC
+
+** VTerm
+#+BEGIN_SRC emacs-lisp
+  (use-package vterm
+    :ensure t
+    :if (member system-type '(gnu gnu/linux darwin)))
+#+END_SRC
+
+* Keybindings
+** IBuffer
+Emacs buffer list, but better.
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC

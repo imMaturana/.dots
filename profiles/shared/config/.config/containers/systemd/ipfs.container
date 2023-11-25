@@ -1,0 +1,14 @@
+[Unit]
+Description=IPFS Container
+
+[Container]
+Image=docker.io/ipfs/kubo:latest
+ContainerName=ipfs
+Volume=%h/.config/ipfs:/data/ipfs
+Volume=%h/ipfs:/export
+PublishPort=8080:8080
+PublishPort=5001:5001
+AutoUpdate=registry
+
+[Install]
+WantedBy=default.target

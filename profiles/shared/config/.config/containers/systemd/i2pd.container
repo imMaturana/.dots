@@ -1,0 +1,13 @@
+[Unit]
+Description=I2Pd Darknet Container
+
+[Container]
+Image=ghcr.io/purplei2p/i2pd:latest
+ContainerName=i2pd
+PublishPort=7070:7070
+PublishPort=4444:4444
+PublishPort=4447:4447
+AutoUpdate=registry
+
+[Install]
+WantedBy=default.target

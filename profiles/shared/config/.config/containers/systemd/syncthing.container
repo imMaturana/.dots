@@ -1,0 +1,15 @@
+[Unit]
+Description=Syncthing Container
+
+[Container]
+Image=docker.io/syncthing/syncthing:latest
+ContainerName=syncthing
+UserNS=keep-id
+Volume=%h/.config/syncthing:/var/syncthing/config
+Volume=%h/Sync:/var/syncthing/Sync
+Volume=%h/Music:/var/syncthing/Music
+PublishPort=8384:8384
+AutoUpdate=registry
+
+[Install]
+WantedBy=default.target

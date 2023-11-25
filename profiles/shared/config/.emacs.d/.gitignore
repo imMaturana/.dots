@@ -1,0 +1,10 @@
+auto-save-list/
+eln-cache/
+transient/
+elpa/
+recentf
+
+custom.el
+config.el
+
+*~
