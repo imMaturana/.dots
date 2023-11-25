@@ -1,6 +1,6 @@
-[submodule "profiles/shared/config/.emacs.d"]
-	path = profiles/shared/config/.emacs.d
-	url = git@github.com:imMaturana/.emacs.d
 [submodule "profiles/shared/config/.config/nvim"]
 	path = profiles/shared/config/.config/nvim
 	url = git@github.com:imMaturana/nvim.git
+[submodule "profiles/shared/config/.emacs.d"]
+	path = profiles/shared/config/.emacs.d
+	url = git@github.com:imMaturana/.emacs.d.git

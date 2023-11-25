@@ -19,8 +19,8 @@ shared_dotfiles=(
 	# neovim
 	"$cfg_dir/.config/nvim"
 
-    # emacs
-    "$cfg_dir/.emacs.d"
+	# emacs
+	"$cfg_dir/.emacs.d"
 
 	# VSCodium
 	"$cfg_dir/.config/VSCodium/User/settings.json"
