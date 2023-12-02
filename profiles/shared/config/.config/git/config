@@ -1,6 +1,6 @@
 [user]
 	name = imMaturana
-	email = maturana.dev@gmail.com
+	email = git@maturana.simplelogin.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIApciVrwNsMaaPNIPn9CMoHfKSx1Gzq/QY8Ri4ResOAW maturana.dev@gmail.com
 [commit]
 	gpgsign = true
