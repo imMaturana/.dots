@@ -7,7 +7,7 @@ export HISTSIZE=1000
 export SAVEHIST=$HISTSIZE
 
 # age
-export AGE_KEY=~/.age/key.txt
+export AGE_KEY=~/.age/key.age
 
 # distrobox
 export DISTROBOX_DIR=~/.config/distrobox
