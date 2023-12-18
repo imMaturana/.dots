@@ -1,7 +1,7 @@
 profile="$src/profiles/sway"
 cfg_dir="$profile/config"
 
-sway_dotfiles=(
+profile_dotfiles=(
 	# desktop
 	"$cfg_dir/.config/sway"
 	"$cfg_dir/.config/waybar"
@@ -19,8 +19,8 @@ sway_dotfiles=(
 	"$cfg_dir/.config/zathura"
 )
 
-readarray -t sway_packages < "$profile/packages"
-readarray -t sway_flatpak_packages < "$profile/flatpak_packages"
+readarray -t profile_packages < "$profile/packages"
+readarray -t profile_flatpak_packages < "$profile/flatpak_packages"
 
 # install pipewire
 sudo apt install pipewire pipewire-audio

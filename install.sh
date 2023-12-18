@@ -23,23 +23,9 @@ packages+=${shared_packages[@]}
 flatpak_packages+=${shared_flatpak_packages[@]}
 
 # append the $selected_profile dotfiles
-case $selected_profile in
-	sway)
-		dotfiles+=${sway_dotfiles[@]}
-		packages+=${sway_packages[@]}
-		flatpak_packages+=${sway_flatpak_packages[@]}
-		;;
-	gnome)
-		dotfiles+=${gnome_dotfiles[@]}
-		packages+=${gnome_packages[@]}
-		flatpak_packages+=${gnome_flatpak_packages[@]}
-		;;
-	plasma)
-		dotfiles+=${plasma_dotfiles[@]}
-		packages+=${plasma_packages[@]}
-		flatpak_packages+=${plasma_flatpak_packages[@]}
-		;;
-esac
+dotfiles+=${profile_dotfiles[@]}
+packages+=${profile_packages[@]}
+flatpak_packages+=${profile_flatpak_packages[@]}
 
 # install packages
 sudo apt install --no-install-recommends ${packages[@]}
