@@ -2,6 +2,7 @@
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -i'
+alias srm='shred -zuv'
 
 # mkdir
 alias mkdir='mkdir -p'
@@ -22,3 +23,6 @@ alias btoff='bluetoothctl power off'
 alias db='distrobox'
 alias dbcr='distrobox create --no-entry'
 alias dbrm='distrobox rm'
+
+# termbin
+alias tb='nc termbin.com 9999'
