@@ -17,12 +17,12 @@ declare -A flatpak_packages
 source ./profiles/shared/index.sh
 source ./profiles/$selected_profile/index.sh
 
-# add the shared dots to the variable
+# append the shared dots to arrays
 dotfiles+=${shared_dotfiles[@]}
 packages+=${shared_packages[@]}
 flatpak_packages+=${shared_flatpak_packages[@]}
 
-# add the $selected_profiles dotfiles
+# append the $selected_profile dotfiles
 case $selected_profile in
 	sway)
 		dotfiles+=${sway_dotfiles[@]}
